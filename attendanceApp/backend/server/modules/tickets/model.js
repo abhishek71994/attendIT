@@ -6,7 +6,7 @@ const TicketSchema = new Schema({
 		required: true
 	},
 	enrollment_no:{
-		type: Number,
+		type: String,
 		required: true
 	},
 	date:{
