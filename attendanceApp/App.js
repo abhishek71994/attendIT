@@ -11,9 +11,7 @@ import {
   Text,
   View
 } from 'react-native';
-import Login from './components/login';
-import StudentTicket from './components/studentticket';
-import HeadUpload from './components/upload';
+import StudentPicker from './components/studentpicker';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -26,7 +24,7 @@ type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-      <StudentTicket />
+      <StudentPicker />
     );
   }
 }
