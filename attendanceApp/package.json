@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "expo": "^26.0.0",
+    "npm": "^5.8.0",
     "react": "^16.3.0-alpha.1",
     "react-native": "0.54.4",
     "react-native-calendars": "^1.17.7",
