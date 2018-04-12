@@ -1,7 +1,7 @@
 import express from 'express';
 import dbConfig from './config/db';
 import Middleware from './config/middleware';
-import { TicketRoute } from "./modules";
+import { TicketRoute, LoginRoute } from "./modules";
 
 const app = express();
 
@@ -14,7 +14,9 @@ dbConfig();
 // middleware
 Middleware(app);
 
-app.use('/api',[ TicketRoute ]);
+app.use('/api',[ TicketRoute,LoginRoute ]);
+
+// for login details
 
 app.listen(PORT,err=>{
 	if(err){
