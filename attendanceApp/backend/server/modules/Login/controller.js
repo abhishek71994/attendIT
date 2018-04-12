@@ -8,11 +8,15 @@ export const verify = async (req,res) => {
 			
 			const db = client.db('studentTicket');
 			
-			db.collection('loginData').find({ username: username },(err, data) =>{
+			db.collection('loginData').find({ username: username }).toArray((err, data) =>{
 				if (err) console.log(err)
 				else{
-					console.log(data);
-					return res.status(201).json({ticket: 'things are working'});
+					data.forEach(
+						(doc) => {
+							return res.status(201).json({doc});
+							}
+					);
+					
 				}
 			});
 		});
