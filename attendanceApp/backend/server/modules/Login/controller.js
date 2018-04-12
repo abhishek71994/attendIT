@@ -8,12 +8,12 @@ export const verify = async (req,res) => {
 			
 			const db = client.db('studentTicket');
 			
-			db.collection('loginData').find({ username: username }).toArray((err, data) =>{
+			db.collection('loginData').find({ username: username,password:password }).toArray((err, data) =>{
 				if (err) console.log(err)
 				else{
 					data.forEach(
 						(doc) => {
-							return res.status(201).json({doc});
+							return res.status(201).json(doc);
 							}
 					);
 					

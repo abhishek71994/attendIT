@@ -12,7 +12,7 @@ import {
   SafeAreaView
 } from 'react-native';
 import StudentTicket from './components/studentticket';
-import StudentPIcker from './components/studentpicker';
+import StudentPicker from './components/studentpicker';
 import Login from './components/login';
 import Upload from './components/upload';
 import { StackNavigator } from 'react-navigation';
@@ -26,6 +26,9 @@ const instructions = Platform.select({
 
 const Application = StackNavigator({
   Home:{ screen:Login },
+  StudentPicker : { screen : StudentPicker },
+  Upload : {screen: Upload},
+  StudentTicket : { screen : StudentTicket }
   },{
     navigatorOptions : {
       header: false,

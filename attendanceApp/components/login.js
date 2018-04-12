@@ -28,9 +28,32 @@ export default class Login extends Component{
 		}
 	}
 	login = () => {
-		alert("testing");
 		//the fetching thing
 		// use post to send data to express and then express looks up the dB for records
+		fetch('http://localhost:3001/api/login',{
+			method : 'POST',
+			headers : {
+				'Accept' : 'application/json', 
+				'Content-Type' : 'application/json', 
+			},
+			body : JSON.stringify({
+				username : this.state.username,
+				password : this.state.password
+			})
+		})
+		.then((resp)=> resp.json())
+		.then( (res) =>{
+			//taking care of async storage later
+			if(res.role === 'event-head'){
+				this.props.navigation.navigate('Upload');
+			}
+			if(res.role === 'student'){
+				this.props.navigation.navigate('StudentTicket');
+			}
+			if(res.role === 'hod'){
+				this.props.navigation.navigate('StudentPicker');
+			}
+		} )
 	}
 	render(){
 		return(
