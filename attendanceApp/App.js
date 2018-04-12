@@ -7,15 +7,16 @@
 import React, { Component } from 'react';
 import {
   Platform,
-  StyleSheet,
   Text,
-  View
+  View,
+  SafeAreaView
 } from 'react-native';
 import StudentTicket from './components/studentticket';
 import StudentPIcker from './components/studentpicker';
 import Login from './components/login';
 import Upload from './components/upload';
-
+import { StackNavigator } from 'react-navigation';
+ 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
     'Cmd+D or shake for dev menu',
@@ -23,30 +24,25 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
+const Application = StackNavigator({
+  Home:{ screen:Login },
+  },{
+    navigatorOptions : {
+      header: false,
+    },
+    transitionConfig: () => ({
+    containerStyle: {
+      marginTop: -40,
+    }
+  })
+  });
+
 type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-      <StudentPIcker />
+        <Application />
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
