@@ -1,7 +1,7 @@
 import express from 'express';
 import dbConfig from './config/db';
 import Middleware from './config/middleware';
-import { TicketRoute, LoginRoute } from "./modules";
+import { TicketRoute, LoginRoute, verifiedStudent } from "./modules";
 
 const app = express();
 
@@ -14,7 +14,7 @@ dbConfig();
 // middleware
 Middleware(app);
 
-app.use('/api',[ TicketRoute,LoginRoute ]);
+app.use('/api',[ TicketRoute,LoginRoute,verifiedStudent ]);
 
 // for login details
 

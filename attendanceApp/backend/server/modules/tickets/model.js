@@ -16,6 +16,10 @@ const TicketSchema = new Schema({
 	event:{
 		type: String,
 		required: true
+	},
+	department:{
+		type:String,
+		required :true
 	}
 });
 
