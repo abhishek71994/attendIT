@@ -44,18 +44,14 @@ export default class Login extends Component{
 		.then((resp)=> resp.json())
 		.then( (res) =>{
 			//taking care of async storage later
-			console.log(res);
 			if(res.role === 'event-head'){
 				this.props.navigation.navigate('Upload');
 			}
 			if(res.role === 'student'){
-			    this.props.navigation.navigate('StudentTicket',{id: res._id,username: res.username , enrollNo : res.enroll_no});
+			    this.props.navigation.navigate('StudentTicket',{id: res._id,username: res.username , enrollNo : res.enroll_no, dept : res.department});
 			}
 			if(res.role === 'hod'){
-				this.props.navigation.navigate('StudentPicker');
-			}
-			else{
-				alert('Wrong id or password')
+				this.props.navigation.navigate('StudentPicker',{ dept: res.department });
 			}
 		} )
 	}

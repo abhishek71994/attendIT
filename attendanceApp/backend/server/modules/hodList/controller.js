@@ -10,12 +10,12 @@ export const verify = async (req,res) => {
 			db.collection('tickets').find({ department : department }).toArray((err, data) =>{
 				if (err) console.log(err)
 				else{
-					console.log((data));
-					data.forEach(
-						(doc) => {
-							return res.status(201).json(doc);
-							}
-					);
+					// data.forEach(
+					// 	(doc) => {
+					// 		return res.status(201).json(doc);
+					// 		}
+					// );
+					return res.status(201).json(data);
 				}
 			});
 		});

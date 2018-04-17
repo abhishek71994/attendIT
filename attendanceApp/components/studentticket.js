@@ -30,7 +30,8 @@ export default class studentticket extends Component{
 				name : this.state.username,
 				enrollment_no : this.state.enrollNo,
 				date : this.state.selected,
-				event : this.state.event
+				event : this.state.event,
+				department : this.state.dept
 			})
 		})
 		.then((res) => res.json())
@@ -47,6 +48,7 @@ export default class studentticket extends Component{
 		this.setState({ id : this.props.navigation.state.params.id ,
 		 username : this.props.navigation.state.params.username,
 		 enrollNo : this.props.navigation.state.params.enrollNo,
+		 dept : this.props.navigation.state.params.dept,
 		  });
 	}
 	render(){
