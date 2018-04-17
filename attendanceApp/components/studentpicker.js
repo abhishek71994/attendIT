@@ -41,12 +41,10 @@ export default class StudentPicker extends Component{
 		.then((resp)=> resp.json())
 		.then( (res) =>{
 			//taking care of async storage later
-			console.log(res);
 			res.forEach((data) => {
 					this.setState({
 						students : [ ...this.state.students , data.name ]
 					});
-					console.log(data.name);
 			})
 		})
 			
