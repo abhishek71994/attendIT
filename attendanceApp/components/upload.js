@@ -28,6 +28,8 @@ export default class Upload extends Component{
 	         res.fileSize
 	      );
 	    });
+
+
 	} 
 	render(){
 		return(
