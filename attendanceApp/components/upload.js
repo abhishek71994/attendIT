@@ -18,7 +18,7 @@ export default class Upload extends Component{
 		console.log('Upload pressed');
 
 		DocumentPicker.show({
-	      filetype: [DocumentPickerUtil.pdf()],
+	      filetype: [DocumentPickerUtil.allFiles()],
 	    },(error,res) => {
 	      // Android
 	      console.log(
