@@ -3,9 +3,8 @@ package com.attendanceapp;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.reactnativedocumentpicker.ReactNativeDocumentPicker;
 import com.oblador.vectoricons.VectorIconsPackage;
-import com.filepicker.FilePickerPackage;
+import com.reactnativedocumentpicker.ReactNativeDocumentPicker;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -26,9 +25,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new ReactNativeDocumentPicker(),
             new VectorIconsPackage(),
-            new FilePickerPackage()
+            new ReactNativeDocumentPicker()
       );
     }
 

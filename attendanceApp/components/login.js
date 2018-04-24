@@ -47,10 +47,10 @@ export default class Login extends Component{
 			if(res.role === 'event-head'){
 				this.props.navigation.navigate('Upload');
 			}
-			if(res.role === 'student'){
+			else if(res.role === 'student'){
 			    this.props.navigation.navigate('StudentTicket',{id: res._id,username: res.username , enrollNo : res.enroll_no, dept : res.department});
 			}
-			if(res.role === 'hod'){
+			else if(res.role === 'hod'){
 				this.props.navigation.navigate('StudentPicker',{ dept: res.department });
 			}
 		} )
@@ -70,6 +70,7 @@ export default class Login extends Component{
 					<TextInput placeholder='Password' 
 					onChangeText = { (password) => {this.setState({ password: password })} }
 					underlineColorAndroid = 'transparent'
+					secureTextEntry = {true}
 					style={styles.textInput}/>
 					<TouchableOpacity  style = {styles.button} onPress={this.login}><Text>Login</Text></TouchableOpacity>
 				</View>
