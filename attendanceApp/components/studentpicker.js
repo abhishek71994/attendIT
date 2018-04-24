@@ -23,8 +23,9 @@ export default class StudentPicker extends Component{
     this.setState({ selectedStudents });
     //addition done removal left
   }
+
   componentWillMount(){
-  	console.log(this.props.navigation.state.params);
+  	/* istanbul ignore next */
   	this.setState({ dept : this.props.navigation.state.params.dept });
   }
   componentDidMount(){

@@ -44,7 +44,7 @@ export default class studentticket extends Component{
 		this.setState({ event: e });
 	}
 	componentDidMount(){
-		console.log(this.props.navigation.state.params);
+		/* istanbul ignore next */
 		this.setState({ id : this.props.navigation.state.params.id ,
 		 username : this.props.navigation.state.params.username,
 		 enrollNo : this.props.navigation.state.params.enrollNo,
