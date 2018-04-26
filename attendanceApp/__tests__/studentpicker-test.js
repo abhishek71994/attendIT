@@ -9,12 +9,24 @@ import StudentPicker from '../components/studentpicker';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-it('renders correctly should set state on mount', () => {
-  const tree = renderer.create(
-    //<Login />
-    <StudentPicker />
-    //<App />
-    //<StudentTicket />
-    //<Upload />
+// it('renders correctly should set state on mount', () => {
+//   const tree = renderer.create(
+//     //<Login />
+//     <StudentPicker />
+//     //<App />
+//     //<StudentTicket />
+//     //<Upload />
+//   );
+// });
+it('renders correctly', () => {
+    const mockState={
+    	state:{
+    		params:{
+    			dept:'CSE'
+    		}
+    	}
+    }
+    const tree = renderer.create(
+    <StudentPicker navigation={mockState}/>
   );
-});
+  })

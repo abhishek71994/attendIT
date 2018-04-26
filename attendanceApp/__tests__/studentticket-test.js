@@ -9,12 +9,27 @@ import StudentTicket from '../components/studentticket';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-it('should set state on mount', () => {
-  const tree = renderer.create(
-    //<Login />
-    //<StudentPicker />
-    //<App />
-    <StudentTicket />
-    //<Upload />
+// it('should set state on mount', () => {
+//   const tree = renderer.create(
+//     //<Login />
+//     //<StudentPicker />
+//     //<App />
+//     <StudentTicket />
+//     //<Upload />
+//   );
+// });
+it('renders correctly', () => {
+    const mockState={
+    	state:{
+    		params:{
+    			dept:'CSE',
+    			username: 'Abhishek',
+    			enrollmentNo: '12014002002056',
+    			id: 'something'
+    		}
+    	}
+    }
+    const tree = renderer.create(
+    <StudentTicket navigation={mockState}/>
   );
-});
+  })

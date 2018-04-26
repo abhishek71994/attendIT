@@ -15,6 +15,7 @@ export default class StudentPicker extends Component{
 		this.state = {
 			students : [],
 			selectedStudents : [],
+			dept:''
 		};
 		this.onSelectionsChange = this.onSelectionsChange.bind(this);
 		this.fetchResult = this.fetchResult.bind(this);
@@ -27,10 +28,22 @@ export default class StudentPicker extends Component{
 
   
   componentWillMount(){
-  	/* istanbul ignore next */
-  	this.setState(
-  		{ dept : this.props.navigation.state.params.dept })
-  	;
+  	// function checkProp(obj, key) {
+   //    let r = false;
+   //    for (let i in obj) {
+   //      if (i == key) return true;
+   //      if (typeof obj[i] == 'object') r = checkProp(obj[i], key)
+   //    }
+   //    return r;
+   //  }
+  	// /* istanbul ignore next */
+  	// if(this.props){
+  	// 	if(this.checkProp(this.props,dept)){
+  	// 		this.setState({ dept : this.props.navigation.state.params.dept });
+  	// 	}
+  	// }
+  	this.setState({ dept : this.props.navigation.state.params.dept });
+  	
   }
   /* istanbul ignore next */
   fetchResult=() => {

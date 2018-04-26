@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1524775597523" clover="3.2.0">
-  <project timestamp="1524775597523" name="All files">
-    <metrics statements="49" coveredstatements="19" conditionals="8" coveredconditionals="0" methods="30" coveredmethods="9" elements="87" coveredelements="28" complexity="0" loc="49" ncloc="49" packages="2" files="6" classes="6">
+<coverage generated="1524779766750" clover="3.2.0">
+  <project timestamp="1524779766750" name="All files">
+    <metrics statements="50" coveredstatements="23" conditionals="8" coveredconditionals="0" methods="30" coveredmethods="12" elements="88" coveredelements="35" complexity="0" loc="50" ncloc="50" packages="2" files="6" classes="6">
       <package name="attendanceApp">
         <metrics statements="5" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <file name="App.js" path="/Users/abhihk95/Desktop/react-apps/team-despicable-us/attendanceApp/App.js">
@@ -17,7 +17,7 @@
         </file>
       </package>
       <package name="attendanceApp.components">
-        <metrics statements="44" coveredstatements="16" conditionals="8" coveredconditionals="0" methods="28" coveredmethods="9"/>
+        <metrics statements="45" coveredstatements="20" conditionals="8" coveredconditionals="0" methods="28" coveredmethods="12"/>
         <file name="login.js" path="/Users/abhihk95/Desktop/react-apps/team-despicable-us/attendanceApp/components/login.js">
           <metrics statements="17" coveredstatements="4" conditionals="8" coveredconditionals="0" methods="9" coveredmethods="3"/>
           <line num="15" count="0" type="stmt"/>
@@ -39,19 +39,20 @@
           <line num="82" count="2" type="stmt"/>
         </file>
         <file name="studentpicker.js" path="/Users/abhihk95/Desktop/react-apps/team-despicable-us/attendanceApp/components/studentpicker.js">
-          <metrics statements="12" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="2"/>
-          <line num="18" count="1" type="stmt"/>
-          <line num="19" count="1" type="stmt"/>
-          <line num="23" count="1" type="stmt"/>
-          <line num="24" count="1" type="stmt"/>
-          <line num="29" count="0" type="stmt"/>
-          <line num="40" count="0" type="stmt"/>
-          <line num="50" count="0" type="stmt"/>
-          <line num="53" count="0" type="stmt"/>
-          <line num="54" count="0" type="stmt"/>
-          <line num="61" count="0" type="stmt"/>
-          <line num="65" count="0" type="stmt"/>
-          <line num="78" count="2" type="stmt"/>
+          <metrics statements="13" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="5"/>
+          <line num="14" count="1" type="stmt"/>
+          <line num="15" count="1" type="stmt"/>
+          <line num="20" count="1" type="stmt"/>
+          <line num="21" count="1" type="stmt"/>
+          <line num="25" count="0" type="stmt"/>
+          <line num="45" count="1" type="stmt"/>
+          <line num="50" count="1" type="stmt"/>
+          <line num="60" count="0" type="stmt"/>
+          <line num="63" count="0" type="stmt"/>
+          <line num="64" count="0" type="stmt"/>
+          <line num="71" count="1" type="stmt"/>
+          <line num="75" count="1" type="stmt"/>
+          <line num="87" count="2" type="stmt"/>
         </file>
         <file name="studentticket.js" path="/Users/abhihk95/Desktop/react-apps/team-despicable-us/attendanceApp/components/studentticket.js">
           <metrics statements="9" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="2"/>
@@ -62,7 +63,7 @@
           <line num="39" count="0" type="stmt"/>
           <line num="40" count="0" type="stmt"/>
           <line num="44" count="0" type="stmt"/>
-          <line num="56" count="1" type="stmt"/>
+          <line num="56" count="2" type="stmt"/>
           <line num="73" count="2" type="stmt"/>
         </file>
         <file name="upload.js" path="/Users/abhihk95/Desktop/react-apps/team-despicable-us/attendanceApp/components/upload.js">
