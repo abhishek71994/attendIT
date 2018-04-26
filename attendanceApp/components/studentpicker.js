@@ -8,7 +8,6 @@ import {
 	TouchableOpacity
 } from 'react-native';
 import SelectMultiple from 'react-native-select-multiple';
-
 export default class StudentPicker extends Component{
 	constructor(props){
 		super(props);
@@ -17,6 +16,7 @@ export default class StudentPicker extends Component{
 			selectedStudents : [],
 		};
 		this.onSelectionsChange = this.onSelectionsChange.bind(this);
+		this.fetchResult = this.fetchResult.bind(this);
 	}
 	onSelectionsChange = (selectedStudents) => {
     // selectedFruits is array of { label, value }
@@ -24,11 +24,12 @@ export default class StudentPicker extends Component{
     //addition done removal left
   }
 
+  /* istanbul ignore next */
   componentWillMount(){
-  	/* istanbul ignore next */
-  	this.setState({ dept : this.props.navigation.state.params.dept });
+  	//this.setState({ dept : this.props.navigation.state.params.dept });
   }
-  componentDidMount(){
+  /* istanbul ignore next */
+  fetchResult=() => {
   	fetch('http://localhost:3001/api/student/verified',{
 			method : 'POST',
 			headers : {
@@ -48,6 +49,9 @@ export default class StudentPicker extends Component{
 					});
 			})
 		})
+  }
+  componentDidMount(){
+  	this.fetchResult();
 			
   }
 	render(){

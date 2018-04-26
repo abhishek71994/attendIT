@@ -4,13 +4,15 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "dependencies": {
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "expo": "^26.0.0",
+    "jest-fetch-mock": "^1.5.0",
     "npm": "^5.8.0",
     "react": "^16.3.0-alpha.1",
     "react-native": "0.54.4",
@@ -31,6 +33,10 @@
     "preset": "react-native",
     "transformIgnorePatterns": [
       "node_modules/(?!react-navigation|react-native|expo|native-base-shoutem-theme)"
+    ],
+    "automock": false,
+    "setupFiles": [
+      "./setupFetch.js"
     ]
   }
 }

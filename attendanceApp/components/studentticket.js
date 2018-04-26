@@ -43,13 +43,14 @@ export default class studentticket extends Component{
 	changeEvent = (e) => {
 		this.setState({ event: e });
 	}
+	/* istanbul ignore next */
 	componentDidMount(){
-		/* istanbul ignore next */
-		this.setState({ id : this.props.navigation.state.params.id ,
-		 username : this.props.navigation.state.params.username,
-		 enrollNo : this.props.navigation.state.params.enrollNo,
-		 dept : this.props.navigation.state.params.dept,
-		  });
+		
+		// this.setState({ id : this.props.navigation.state.params.id ,
+		//  username : this.props.navigation.state.params.username,
+		//  enrollNo : this.props.navigation.state.params.enrollNo,
+		//  dept : this.props.navigation.state.params.dept,
+		//   });
 	}
 	render(){
 		return(
