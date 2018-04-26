@@ -8,6 +8,7 @@ import {
 	TouchableOpacity
 } from 'react-native';
 import SelectMultiple from 'react-native-select-multiple';
+
 export default class StudentPicker extends Component{
 	constructor(props){
 		super(props);
@@ -24,9 +25,12 @@ export default class StudentPicker extends Component{
     //addition done removal left
   }
 
-  /* istanbul ignore next */
+  
   componentWillMount(){
-  	//this.setState({ dept : this.props.navigation.state.params.dept });
+  	/* istanbul ignore next */
+  	this.setState(
+  		{ dept : this.props.navigation.state.params.dept })
+  	;
   }
   /* istanbul ignore next */
   fetchResult=() => {

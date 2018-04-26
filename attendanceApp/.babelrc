@@ -1,4 +1,4 @@
 {
   "presets": ["react-native","es2015","env"],
-  "plugins": ["transform-class-properties"]
+  "plugins": ["transform-class-properties","transform-decorators-legacy","transform-class-properties"]
 }

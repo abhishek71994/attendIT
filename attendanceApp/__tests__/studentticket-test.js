@@ -9,7 +9,7 @@ import StudentTicket from '../components/studentticket';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-it('renders correctly', () => {
+it('should set state on mount', () => {
   const tree = renderer.create(
     //<Login />
     //<StudentPicker />

@@ -46,11 +46,11 @@ export default class studentticket extends Component{
 	/* istanbul ignore next */
 	componentDidMount(){
 		
-		// this.setState({ id : this.props.navigation.state.params.id ,
-		//  username : this.props.navigation.state.params.username,
-		//  enrollNo : this.props.navigation.state.params.enrollNo,
-		//  dept : this.props.navigation.state.params.dept,
-		//   });
+		this.setState({ id : this.props.navigation.state.params.id ,
+		 username : this.props.navigation.state.params.username,
+		 enrollNo : this.props.navigation.state.params.enrollNo,
+		 dept : this.props.navigation.state.params.dept,
+		  });
 	}
 	render(){
 		return(

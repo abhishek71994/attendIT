@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">41.67% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>8/12</span>
+        <span class='fraction'>5/12</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,21 +30,21 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">22.22% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>4/8</span>
+        <span class='fraction'>2/9</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">41.67% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>8/12</span>
+        <span class='fraction'>5/12</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line low'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -133,7 +133,20 @@
 <a name='L85'></a><a href='#L85'>85</a>
 <a name='L86'></a><a href='#L86'>86</a>
 <a name='L87'></a><a href='#L87'>87</a>
-<a name='L88'></a><a href='#L88'>88</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -152,6 +165,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -165,7 +179,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -186,11 +201,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -230,10 +246,15 @@ import {
 	TouchableOpacity
 } from 'react-native';
 import SelectMultiple from 'react-native-select-multiple';
-export default class StudentPicker extends Component{
+import {observable} from "mobx";
+import {observer} from "mobx-react/custom";
+&nbsp;
+  
+@observer class StudentPicker extends Component{
+	@observable selection = null; /* MobX managed instance state */
 	constructor(props){
 		super(props);
-		this.state = {
+		this.selection = {
 			students : [],
 			selectedStudents : [],
 		};
@@ -242,17 +263,19 @@ export default class StudentPicker extends Component{
 	}
 	onSelectionsChange = <span class="fstat-no" title="function not covered" >(s</span>electedStudents) =&gt; {
     // selectedFruits is array of { label, value }
-<span class="cstat-no" title="statement not covered" >    this.setState({ selectedStudents });</span>
+    //maybe a error here.
+<span class="cstat-no" title="statement not covered" >    this.selection = selectedStudents ;</span>
     //addition done removal left
   }
 &nbsp;
-  /* istanbul ignore next */
+  
   componentWillMount(){
-  	//this.setState({ dept : this.props.navigation.state.params.dept });
+  	/* istanbul ignore next */
+  	this.selection = {...this.selection, dept : this.props.navigation.state.params.dept };
   }
   /* istanbul ignore next */
-  fetchResult=() =&gt; {
-  	fetch('http://localhost:3001/api/student/verified',{
+  fetchResult=<span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >  	fetch('http://localhost:3001/api/student/verified',{</span>
 			method : 'POST',
 			headers : {
 				'Accept' : 'application/json', 
@@ -267,28 +290,29 @@ export default class StudentPicker extends Component{
 			//taking care of async storage later
 <span class="cstat-no" title="statement not covered" >			res.forEach(<span class="fstat-no" title="function not covered" >(d</span>ata) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >					this.setState({</span>
-						students : [ ...this.state.students , data.name ]
+						students : [ ...this.selection.students , data.name ]
 					});
 			})
 		})
   }
-  componentDidMount(){
-  	this.fetchResult();
+<span class="fstat-no" title="function not covered" >  co</span>mponentDidMount(){
+<span class="cstat-no" title="statement not covered" >  	this.fetchResult();</span>
 			
   }
-	render(){
-		return(
+<span class="fstat-no" title="function not covered" >	re</span>nder(){
+<span class="cstat-no" title="statement not covered" >		return(</span>
 			&lt;View style = {styles.wrapper}&gt;
 				&lt;Text&gt;StudentPicker component&lt;/Text&gt;
 				&lt;SelectMultiple
-		          items={this.state.students}
-		          selectedItems={this.state.selectedStudents}
+		          items={this.selection.students}
+		          selectedItems={this.selection.selectedStudents}
 		          onSelectionsChange={this.onSelectionsChange} /&gt;
 		          &lt;TouchableOpacity style={styles.button}&gt;&lt;Text&gt;Approve&lt;/Text&gt;&lt;/TouchableOpacity&gt;
 			&lt;/View&gt;
 		)
 	}
 }
+export default StudentPicker;
 const styles = StyleSheet.create({
 	wrapper:{
 		flex : 1,
@@ -307,13 +331,13 @@ const styles = StyleSheet.create({
 		padding : 20,
 		alignItems : 'center'
 	}
-})</pre></td></tr>
+});</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Apr 27 2018 00:52:47 GMT+0530 (IST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Apr 27 2018 02:16:37 GMT+0530 (IST)
 </div>
 </div>
 <script src="../../prettify.js"></script>

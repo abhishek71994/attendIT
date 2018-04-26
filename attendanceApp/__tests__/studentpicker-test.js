@@ -9,7 +9,7 @@ import StudentPicker from '../components/studentpicker';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-it('renders correctly', () => {
+it('renders correctly should set state on mount', () => {
   const tree = renderer.create(
     //<Login />
     <StudentPicker />

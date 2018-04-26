@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1524770568019" clover="3.2.0">
-  <project timestamp="1524770568020" name="All files">
-    <metrics statements="49" coveredstatements="22" conditionals="8" coveredconditionals="0" methods="29" coveredmethods="11" elements="86" coveredelements="33" complexity="0" loc="49" ncloc="49" packages="2" files="6" classes="6">
+<coverage generated="1524775597523" clover="3.2.0">
+  <project timestamp="1524775597523" name="All files">
+    <metrics statements="49" coveredstatements="19" conditionals="8" coveredconditionals="0" methods="30" coveredmethods="9" elements="87" coveredelements="28" complexity="0" loc="49" ncloc="49" packages="2" files="6" classes="6">
       <package name="attendanceApp">
         <metrics statements="5" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <file name="App.js" path="/Users/abhihk95/Desktop/react-apps/team-despicable-us/attendanceApp/App.js">
@@ -17,7 +17,7 @@
         </file>
       </package>
       <package name="attendanceApp.components">
-        <metrics statements="44" coveredstatements="19" conditionals="8" coveredconditionals="0" methods="27" coveredmethods="11"/>
+        <metrics statements="44" coveredstatements="16" conditionals="8" coveredconditionals="0" methods="28" coveredmethods="9"/>
         <file name="login.js" path="/Users/abhihk95/Desktop/react-apps/team-despicable-us/attendanceApp/components/login.js">
           <metrics statements="17" coveredstatements="4" conditionals="8" coveredconditionals="0" methods="9" coveredmethods="3"/>
           <line num="15" count="0" type="stmt"/>
@@ -39,19 +39,19 @@
           <line num="82" count="2" type="stmt"/>
         </file>
         <file name="studentpicker.js" path="/Users/abhihk95/Desktop/react-apps/team-despicable-us/attendanceApp/components/studentpicker.js">
-          <metrics statements="12" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="4"/>
-          <line num="13" count="1" type="stmt"/>
-          <line num="14" count="1" type="stmt"/>
+          <metrics statements="12" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="2"/>
           <line num="18" count="1" type="stmt"/>
           <line num="19" count="1" type="stmt"/>
-          <line num="23" count="0" type="stmt"/>
-          <line num="33" count="1" type="stmt"/>
-          <line num="43" count="0" type="stmt"/>
-          <line num="46" count="0" type="stmt"/>
-          <line num="47" count="0" type="stmt"/>
-          <line num="54" count="1" type="stmt"/>
-          <line num="58" count="1" type="stmt"/>
-          <line num="70" count="2" type="stmt"/>
+          <line num="23" count="1" type="stmt"/>
+          <line num="24" count="1" type="stmt"/>
+          <line num="29" count="0" type="stmt"/>
+          <line num="40" count="0" type="stmt"/>
+          <line num="50" count="0" type="stmt"/>
+          <line num="53" count="0" type="stmt"/>
+          <line num="54" count="0" type="stmt"/>
+          <line num="61" count="0" type="stmt"/>
+          <line num="65" count="0" type="stmt"/>
+          <line num="78" count="2" type="stmt"/>
         </file>
         <file name="studentticket.js" path="/Users/abhihk95/Desktop/react-apps/team-despicable-us/attendanceApp/components/studentticket.js">
           <metrics statements="9" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="2"/>
