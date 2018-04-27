@@ -52,6 +52,10 @@ export default class studentticket extends Component{
 		 dept : this.props.navigation.state.params.dept,
 		  });
 	}
+	getTime(){
+		const time = new Date();
+		return((time.getHours()>=9 && time.getMinutes()>0));
+	}
 	render(){
 		return(
 				<View style={styles.wrapper}>
@@ -63,7 +67,13 @@ export default class studentticket extends Component{
 	        	data={this.state.data}
 	        	onChangeText = { this.changeEvent }
 	        	style={styles.textInput}/>
-				<TouchableOpacity style={styles.button} onPress={this.raise}><Text>Raise Ticket</Text></TouchableOpacity>
+				<TouchableOpacity 
+				style={styles.button} 
+				disabled={this.getTime()}
+				onPress={this.raise}
+				>
+				<Text>Raise Ticket</Text>
+				</TouchableOpacity>
 				</View>
 				
 			
