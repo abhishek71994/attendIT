@@ -1,45 +1,32 @@
-import React, { Component } from 'react';
-import {
-  Platform,
-  Text,
-  View,
-  SafeAreaView
-} from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import Login from "./components/login";
 import StudentTicket from './components/studentticket';
 import StudentPicker from './components/studentpicker';
-import Login from './components/login';
 import Upload from './components/upload';
 import { StackNavigator } from 'react-navigation';
- 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-
-const Application = StackNavigator({
-  Home:{ screen:Login },
-  StudentPicker : { screen : StudentPicker },
-  Upload : {screen: Upload},
-  StudentTicket : { screen : StudentTicket }
-  },{
-    navigatorOptions : {
-      header: false,
-    },
-    transitionConfig: () => ({
-    containerStyle: {
-      marginTop: -40,
-    }
-  })
-  });
-
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends React.Component {
   render() {
     return (
+      <View style={styles.container}>
         <Application />
+      </View>
     );
   }
 }
-
+const Application = StackNavigator({
+  Home:{ screen:Login ,navigationOptions: { header: null }},
+  StudentPicker : { screen : StudentPicker,navigationOptions: { header: null } },
+  Upload : {screen: Upload,navigationOptions: { header: null }},
+  StudentTicket : { screen : StudentTicket,navigationOptions: { header: null } }
+  },{
+    transitionConfig: () => ({
+    containerStyle: {
+    }
+  })
+  });
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+});

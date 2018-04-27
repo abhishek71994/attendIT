@@ -30,7 +30,7 @@ export default class Login extends Component{
 	login = () => {
 		//the fetching thing
 		// use post to send data to express and then express looks up the dB for records
-		fetch('http://localhost:3001/api/login',{
+		fetch('http://192.168.43.109:3001/api/login',{
 			method : 'POST',
 			headers : {
 				'Accept' : 'application/json', 
@@ -53,7 +53,11 @@ export default class Login extends Component{
 			else if(res.role === 'hod'){
 				this.props.navigation.navigate('StudentPicker',{ dept: res.department });
 			}
-		} )
+		} ).catch(function(error) {
+			alert("Wrong username or password. Try again!");
+ // ADD THIS THROW error
+  throw error;
+});
 	}
 	render(){
 		return(

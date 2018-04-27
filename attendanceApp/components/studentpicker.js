@@ -47,7 +47,7 @@ export default class StudentPicker extends Component{
   }
   /* istanbul ignore next */
   fetchResult=() => {
-  	fetch('http://localhost:3001/api/student/verified',{
+  	fetch('http://192.168.43.109:3001/api/student/verified',{
 			method : 'POST',
 			headers : {
 				'Accept' : 'application/json', 
@@ -74,12 +74,14 @@ export default class StudentPicker extends Component{
 	render(){
 		return(
 			<View style = {styles.wrapper}>
+				<View style = {styles.container}>
 				<Text>StudentPicker component</Text>
-				<SelectMultiple
-		          items={this.state.students}
-		          selectedItems={this.state.selectedStudents}
-		          onSelectionsChange={this.onSelectionsChange} />
-		          <TouchableOpacity style={styles.button}><Text>Approve</Text></TouchableOpacity>
+					<SelectMultiple
+			        	items={this.state.students}
+			        	selectedItems={this.state.selectedStudents}
+		          		onSelectionsChange={this.onSelectionsChange} />
+		          	<TouchableOpacity style={styles.button}><Text>Approve</Text></TouchableOpacity>
+		        </View>
 			</View>
 		)
 	}
@@ -90,7 +92,8 @@ const styles = StyleSheet.create({
 		backgroundColor : '#1abc9c',
 	},
 	container : {
-		marginTop : 10,
+		marginTop : 20,
+		flex:1
 	},
 	textInput : {
 		alignSelf : 'stretch',

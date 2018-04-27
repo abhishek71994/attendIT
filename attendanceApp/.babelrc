@@ -1,4 +1,8 @@
 {
-  "presets": ["react-native","es2015","env"],
-  "plugins": ["transform-class-properties","transform-decorators-legacy","transform-class-properties"]
+  "presets": ["babel-preset-expo","es2015","stage-0"],
+  "env": {
+    "development": {
+      "plugins": ["transform-react-jsx-source"]
+    }
+  }
 }

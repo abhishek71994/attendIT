@@ -20,7 +20,7 @@ export default class studentticket extends Component{
 	}
 
 	raise = () =>{
-		fetch('http://localhost:3001/api/ticket',{
+		fetch('http://192.168.43.109:3001/api/ticket',{
 			method : 'POST',
 			headers : {
 				'Accept' : 'application/json', 
@@ -69,7 +69,7 @@ export default class studentticket extends Component{
 	        	style={styles.textInput}/>
 				<TouchableOpacity 
 				style={styles.button} 
-				disabled={this.getTime()}
+				//disabled={this.getTime()}
 				onPress={this.raise}
 				>
 				<Text>Raise Ticket</Text>
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
 		paddingRight : 40
 	},
 	container : {
-		marginTop : 10,
+		marginTop : 40,
 	},
 	textInput : {
 		alignSelf : 'stretch',

@@ -1,4 +1,5 @@
 {
-  "name": "attendanceApp",
-  "displayName": "attendanceApp"
+  "expo": {
+    "sdkVersion": "26.0.0"
+  }
 }
