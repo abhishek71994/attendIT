@@ -9,6 +9,10 @@ import {
 	KeyboardAvoidingView,
 	AsyncStorage,
 } from 'react-native';
+if(typeof global.self === "undefined")
+{
+    global.self = global;
+}
 
 export default class Login extends Component{
 	construtor(props) {
@@ -30,7 +34,7 @@ export default class Login extends Component{
 	login = () => {
 		//the fetching thing
 		// use post to send data to express and then express looks up the dB for records
-		fetch('http://192.168.43.109:3001/api/login',{
+		fetch('http://192.168.0.101:3001/api/login',{
 			method : 'POST',
 			headers : {
 				'Accept' : 'application/json', 

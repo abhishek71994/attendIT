@@ -8,7 +8,6 @@ import {
 	TouchableOpacity
 } from 'react-native';
 import SelectMultiple from 'react-native-select-multiple';
-
 export default class StudentPicker extends Component{
 	constructor(props){
 		super(props);
@@ -47,7 +46,7 @@ export default class StudentPicker extends Component{
   }
   /* istanbul ignore next */
   fetchResult=() => {
-  	fetch('http://192.168.43.109:3001/api/student/verified',{
+  	fetch('http://192.168.0.101:3001/api/student/verified',{
 			method : 'POST',
 			headers : {
 				'Accept' : 'application/json', 

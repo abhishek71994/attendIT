@@ -5,7 +5,13 @@ import StudentTicket from './components/studentticket';
 import StudentPicker from './components/studentpicker';
 import Upload from './components/upload';
 import { StackNavigator } from 'react-navigation';
+import "babel-polyfill";
+if(typeof global.self === "undefined")
+{
+    global.self = global;
+}
 export default class App extends React.Component {
+  
   render() {
     return (
       <View style={styles.container}>
