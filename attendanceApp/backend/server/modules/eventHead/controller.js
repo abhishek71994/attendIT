@@ -2,7 +2,7 @@ import csv from 'csvtojson';
 const studentList = [];
 export const handleFile = (req,res)=>{
 	const file = req.file.path;
-	console.log(file);
+	console.log("the process  ",req);
 	csv()
 	.fromFile(file)
 	.on('json',(jsonObj)=>{

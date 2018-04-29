@@ -12,5 +12,4 @@ const upload = multer({ dest:'../../uploads/' });
 const routes = new Router();
 
 routes.post('/upload/attendance',upload.single('csvfile'), Filer.handleFile);
-
 export default routes;

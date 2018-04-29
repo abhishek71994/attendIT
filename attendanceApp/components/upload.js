@@ -15,8 +15,47 @@ export default class Upload extends Component{
 	}
 	_pickDocument = async () => {
 	    let result = await DocumentPicker.getDocumentAsync({});
-		  alert(result.uri);
-      console.log(result);
+		 if(result.type === "success"){
+		 	//check the type here
+		 	let fileAr = result.name.split(".");
+		 	let fileType = fileAr[fileAr.length-1];
+		 	if(fileType.toLowerCase()==="csv"){
+		 	// 	console.log(result);
+				// var file = new File([""], result.name,{type: "text/csv", size: result.size});
+				var data = new FormData();
+				data.append("csvfile", { uri:result.uri, name:result.name,type: 'text/csv' });
+
+				var xhr = new XMLHttpRequest();
+				xhr.withCredentials = true;
+
+				xhr.addEventListener("readystatechange", function () {
+				  if (this.readyState === 4) {
+				    console.log(this.responseText);
+				  }
+				});
+
+				xhr.open("POST", "http://192.168.0.101:3001/api/upload/attendance");
+				xhr.setRequestHeader("Content-Type", "multipart/form-data");
+
+				xhr.send(data);
+
+				// fetch("http://192.168.0.101:3001/api/upload/attendance", {
+				//   method: 'post',
+				//   header:{
+				//   	"Content-Type" : "multipart/form-data"
+				//   },
+				//   body: data
+				// }).then(res => {
+				//   console.log(res)
+				// });
+
+
+		 	}
+		 	else{
+		 		alert("Upload a csv file please");
+		 	}
+		 }
+      // if result.uri is not negative initiate the upload in an async way and when done show an alert.
 	}
 	render(){
 		return(
