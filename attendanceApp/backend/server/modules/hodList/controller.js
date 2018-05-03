@@ -6,7 +6,9 @@ export const verify = async (req,res) => {
 			if (err) console.log(err);
 			
 			const db = client.db('studentTicket');
-			
+			//get the array of approves students
+			//loop through those students to find the right ones.
+			// send email to them and 
 			db.collection('tickets').find({ department : department }).toArray((err, data) =>{
 				if (err) console.log(err)
 				else{

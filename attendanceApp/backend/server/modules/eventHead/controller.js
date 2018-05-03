@@ -12,7 +12,8 @@ export const handleFile = (req,res)=>{
 	})
 	.on('done',(error)=>{
 	    console.log(studentList);
-	    //retrieve backend then think of something
+	    //find a way to remove tickets that are not matching
+	    //send email to the HOD's of the remaining tickets(check if that is possible.)
 	    return res.status(201).json({msg:"File uploaded"});
 	})
 }
