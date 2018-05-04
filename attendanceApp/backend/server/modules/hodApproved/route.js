@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import * as HodVerified from './controller';
+import * as HodApproved from './controller';
 
 const routes = new Router();
 
-routes.post('/student/approved',HodVerified.approve);
+routes.post('/student/approved',HodApproved.approve);
 
 export default routes;

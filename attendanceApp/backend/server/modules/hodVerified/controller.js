@@ -1,10 +1,13 @@
 import MongoClient from 'mongodb';
-export const approve = async (req,res)=>{
+export const verify = async (req,res)=>{
 	//send the approved students emails
+	const department  = req.body.department;
 	try{
 		MongoClient.connect('mongodb://localhost/', (err,client) =>{
 			if (err) console.log(err);
-			db.collection('tickets').find({ approved:true }).toArray((err, data) =>{
+
+			
+			db.collection('tickets').find({ verified:true, department: department }).toArray((err, data) =>{
 				if (err) console.log(err)
 				else{
 					data.forEach(

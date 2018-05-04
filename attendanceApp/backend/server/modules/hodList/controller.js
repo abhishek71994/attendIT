@@ -9,7 +9,7 @@ export const verify = async (req,res) => {
 			//get the array of approves students
 			//loop through those students to find the right ones.
 			// send email to them and 
-			db.collection('tickets').find({ department : department }).toArray((err, data) =>{
+			db.collection('tickets').find({ department : department , verified : true}).toArray((err, data) =>{
 				if (err) console.log(err)
 				else{
 					return res.status(201).json(data);

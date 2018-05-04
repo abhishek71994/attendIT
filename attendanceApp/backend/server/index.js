@@ -1,7 +1,7 @@
 import express from 'express';
 import dbConfig from './config/db';
 import Middleware from './config/middleware';
-import { TicketRoute, LoginRoute, verifiedStudent, uploadRoute,ApproveRoute } from "./modules";
+import { TicketRoute, LoginRoute, verifiedStudent, uploadRoute,ApproveRoute,VerifyRoute } from "./modules";
 import Reset from './config/reset';
 const app = express();
 
@@ -23,7 +23,7 @@ app.use(function (req, res, next) {
 //resetting the app
 //Reset();
 
-app.use('/api',[ TicketRoute,LoginRoute,verifiedStudent,uploadRoute ,ApproveRoute]);
+app.use('/api',[ TicketRoute,LoginRoute,verifiedStudent,uploadRoute, ApproveRoute, VerifyRoute ]);
 
 // for login details
 
