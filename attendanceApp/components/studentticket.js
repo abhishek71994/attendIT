@@ -31,7 +31,9 @@ export default class studentticket extends Component{
 				enrollment_no : this.state.enrollNo,
 				date : this.state.selected,
 				event : this.state.event,
-				department : this.state.dept
+				department : this.state.dept,
+				section : this.state.section,
+				year : this.state.year
 			})
 		})
 		.then((res) => res.json())
@@ -50,6 +52,8 @@ export default class studentticket extends Component{
 		 username : this.props.navigation.state.params.username,
 		 enrollNo : this.props.navigation.state.params.enrollNo,
 		 dept : this.props.navigation.state.params.dept,
+		 section : this.props.navigation.state.params.section,
+		 year : this.props.navigation.state.params.year
 		  });
 	}
 	getTime(){

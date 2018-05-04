@@ -52,7 +52,7 @@ export default class Login extends Component{
 				this.props.navigation.navigate('Upload');
 			}
 			else if(res.role === 'student'){
-			    this.props.navigation.navigate('StudentTicket',{id: res._id,username: res.username , enrollNo : res.enroll_no, dept : res.department});
+			    this.props.navigation.navigate('StudentTicket',{id: res._id,username: res.username , enrollNo : res.enroll_no, dept : res.department, section : res.section, year: res.year});
 			}
 			else if(res.role === 'hod'){
 				this.props.navigation.navigate('StudentPicker',{ dept: res.department });

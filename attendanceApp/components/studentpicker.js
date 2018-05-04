@@ -16,15 +16,22 @@ export default class StudentPicker extends Component{
 			selectedStudents : [],
 			dept:''
 		};
-		this.onSelectionsChange = this.onSelectionsChange.bind(this);
 		this.fetchResult = this.fetchResult.bind(this);
+		this.send = this.send.bind(this);
 	}
-	onSelectionsChange = (selectedStudents) => {
+
+	onSelect = (selectedStudents) => {
     // selectedFruits is array of { label, value }
     this.setState({ selectedStudents });
     //addition done removal left
   }
 
+  onSelection =  async (selectedStudent) => {
+    // selectedFruits is array of { label, value }
+    console.log(selectedStudent);
+    await this.setState({ selectedStudents : [...this.state.selectedStudents, selectedStudent ] });
+    //addition done removal left
+  }
   
   componentWillMount(){
   	// function checkProp(obj, key) {
@@ -66,9 +73,33 @@ export default class StudentPicker extends Component{
 			})
 		})
   }
+  // postResult = () =>{
+  // 	fetch('http://192.168.0.101:3001/api/student/approved',{
+		// 	method : 'POST',
+		// 	headers : {
+		// 		'Accept' : 'application/json', 
+		// 		'Content-Type' : 'application/json', 
+		// 	},
+		// 	body : JSON.stringify({
+		// 		department : this.state.dept
+		// 	})
+		// })
+		// .then((resp)=> resp.json())
+		// .then( (res) =>{
+		// 	//taking care of async storage later
+		// 	// res.forEach((data) => {
+		// 	// 		this.setState({
+		// 	// 			students : [ ...this.state.students , data.name ]
+		// 	// 		});
+		// 	// })
+		// })
+  // }
   componentDidMount(){
   	this.fetchResult();
 			
+  }
+  send = () => {
+  	console.log(this.state);
   }
 	render(){
 		return(
@@ -77,9 +108,10 @@ export default class StudentPicker extends Component{
 				<Text>StudentPicker component</Text>
 					<SelectMultiple
 			        	items={this.state.students}
-			        	selectedItems={this.state.selectedStudents}
-		          		onSelectionsChange={this.onSelectionsChange} />
-		          	<TouchableOpacity style={styles.button}><Text>Approve</Text></TouchableOpacity>
+		          		onSelectionsChange={this.onSelection}
+		          		selectedItems={this.state.selectedStudents} 
+		          		enableEmptySections/>
+		          	<TouchableOpacity style={styles.button} onPress={this.send}><Text>Approve</Text></TouchableOpacity>
 		        </View>
 			</View>
 		)
