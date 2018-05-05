@@ -45,25 +45,10 @@ export default class StudentPicker extends Component{
     //addition done removal left
   }
   
-  componentWillMount(){
-  	// function checkProp(obj, key) {
-   //    let r = false;
-   //    for (let i in obj) {
-   //      if (i == key) return true;
-   //      if (typeof obj[i] == 'object') r = checkProp(obj[i], key)
-   //    }
-   //    return r;
-   //  }
-  	// /* istanbul ignore next */
-  	// if(this.props){
-  	// 	if(this.checkProp(this.props,dept)){
-  	// 		this.setState({ dept : this.props.navigation.state.params.dept });
-  	// 	}
-  	// }
-  	this.setState({ dept : this.props.navigation.state.params.dept });
-  	
+  async componentWillMount(){
+  	await this.setState({ dept : this.props.navigation.state.params.dept });
+  	await this.fetchResult();
   }
-  /* istanbul ignore next */
   fetchResult=() => {
   	fetch('http://192.168.43.109:3001/api/student/verified',{
 			method : 'POST',
@@ -78,10 +63,11 @@ export default class StudentPicker extends Component{
 		.then((resp)=> resp.json())
 		.then( (res) =>{
 			//taking care of async storage later
-			
+			console.log(res);
 			res.forEach((data) => {
-				let obj = {name: data.name, enrollment_no : data.enrollment_no}
-				if(data.approved){
+				let obj = {name: data.name, enrollment_no : data.enrollment_no};
+				if(data.approved !== undefined){
+					console.log("here");
 					this.setState({
 						selectedStudents : [ ...this.state.selectedStudents , obj ]
 					});
@@ -100,7 +86,8 @@ export default class StudentPicker extends Component{
 				'Content-Type' : 'application/json', 
 			},
 			body : JSON.stringify({
-				data : this.state.selectedStudents
+				data : this.state.selectedStudents,
+				department : this.state.dept
 			})
 		})
 		.then((resp)=> resp.json())
@@ -109,12 +96,15 @@ export default class StudentPicker extends Component{
 		})
   }
   componentDidMount(){
-  	this.fetchResult();
+  	
 			
+  }
+  componentWillUpdate(){
+  	
   }
   send = () => {
   	this.postResult();
-  	//console.log(this.state)
+  	console.log(this.state)
   }
 	render(){
 		return(
@@ -125,7 +115,8 @@ export default class StudentPicker extends Component{
 					 {this.state.students.map(data=>{
 					 		return(<CheckBox
 					 		key={data.enrollment_no}
-					 		isChecked={()=> {return(this.state.selectedStudents.find(function(obj){ return obj.name === data.name } ) === true)}}
+					 		isChecked={this.state.selectedStudents.find(function(obj){ return obj.name === data.name } ).enrollment_no !== ''}
+							
 							leftText={data.name+"("+data.enrollment_no+")"}
 							onClick={()=> this.onSelection(data)}
 							/>)

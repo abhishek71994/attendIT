@@ -6,11 +6,22 @@ export const approve = async (req,res)=>{
 			if (err) console.log(err);
 			const db = client.db('studentTicket');
 			// update the count
-			req.body.data.map(dat=>{
-					db.collection('tickets').update({ enrollment_no : dat.enrollment_no },{ $set:{approved : true }});
+			req.body.data.map(async dat=>{
+					await db.collection('tickets').update({ enrollment_no : dat.enrollment_no },{ $set:{approved : true }});
 			})
 			//db.collection('tickets').update({ enrollment_no : req.body.enrollment_no },{ $set:{approved : true }});
-			return res.status(201).json({msg:"Students approved"});
+			db.collection('tickets').find({ department: req.body.department, approved : true }).toArray((err, data) =>{
+				if (err) console.log(err)
+				else{
+					data.forEach(
+						(doc) => {
+							console.log(doc);
+							return res.status(201).json(doc);
+							}
+					);
+					
+				}
+			});
 		});
 		
 	}catch(e){

@@ -12,7 +12,6 @@ export const handleFile = (req,res)=>{
 			if (err) console.log(err);
 			const db = client.db('studentTicket');
 			// update the count
-			console.log(obj);
 			db.collection('tickets').update({ enrollment_no : jsonObj.enrollment_no },{ $set:{verified : true }});
 		});
 	})
