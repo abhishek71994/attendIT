@@ -26,10 +26,22 @@ export default class StudentPicker extends Component{
     //addition done removal left
   }
 
-  onSelection =  async (selectedStudent) => {
+  onSelection =  (selectedStudent) => {
     // selectedFruits is array of { label, value }
-    console.log(selectedStudent);
-    await this.setState({ selectedStudents : [...this.state.selectedStudents, selectedStudent ] });
+    
+    //if selected then remove
+    if(this.state.selectedStudents.find(function(obj){ return obj.name === selectedStudent.name } )){
+    	let index = this.state.selectedStudents.findIndex(function(obj){ return obj.name === selectedStudent.name  } );
+    	this.setState(prevState => { // pass callback in setState to avoid race condition
+      let newData = prevState.selectedStudents.slice() //copy array from prevState
+      newData.splice(index, 1) // remove element
+      return {selectedStudents: newData} // update state
+    });
+    }
+    else{
+    	this.setState({ selectedStudents : [...this.state.selectedStudents, selectedStudent ] });
+    }
+    
     //addition done removal left
   }
   
@@ -66,50 +78,59 @@ export default class StudentPicker extends Component{
 		.then((resp)=> resp.json())
 		.then( (res) =>{
 			//taking care of async storage later
+			
 			res.forEach((data) => {
+				let obj = {name: data.name, enrollment_no : data.enrollment_no}
+				if(data.approved){
 					this.setState({
-						students : [ ...this.state.students , data.name ]
+						selectedStudents : [ ...this.state.selectedStudents , obj ]
 					});
+				}
+				this.setState({
+					students : [ ...this.state.students , obj ]
+				});
 			})
 		})
   }
-  // postResult = () =>{
-  // 	fetch('http://192.168.0.101:3001/api/student/approved',{
-		// 	method : 'POST',
-		// 	headers : {
-		// 		'Accept' : 'application/json', 
-		// 		'Content-Type' : 'application/json', 
-		// 	},
-		// 	body : JSON.stringify({
-		// 		department : this.state.dept
-		// 	})
-		// })
-		// .then((resp)=> resp.json())
-		// .then( (res) =>{
-		// 	//taking care of async storage later
-		// 	// res.forEach((data) => {
-		// 	// 		this.setState({
-		// 	// 			students : [ ...this.state.students , data.name ]
-		// 	// 		});
-		// 	// })
-		// })
-  // }
+  postResult = () =>{
+  	fetch('http://192.168.43.109:3001/api/student/approved',{
+			method : 'POST',
+			headers : {
+				'Accept' : 'application/json', 
+				'Content-Type' : 'application/json', 
+			},
+			body : JSON.stringify({
+				data : this.state.selectedStudents
+			})
+		})
+		.then((resp)=> resp.json())
+		.then( (res) =>{
+			alert("updated the db");
+		})
+  }
   componentDidMount(){
   	this.fetchResult();
 			
   }
   send = () => {
-  	console.log(this.state);
+  	this.postResult();
+  	//console.log(this.state)
   }
 	render(){
-		var leftText = "hahahahahahaha";
 		return(
 			<View style = {styles.wrapper}>
 				<View style = {styles.container}>
 				<Text>StudentPicker component</Text>
-					<View><CheckBox
-					     leftText={leftText}
-					 /></View>
+					<View>
+					 {this.state.students.map(data=>{
+					 		return(<CheckBox
+					 		key={data.enrollment_no}
+					 		isChecked={()=> {return(this.state.selectedStudents.find(function(obj){ return obj.name === data.name } ) === true)}}
+							leftText={data.name+"("+data.enrollment_no+")"}
+							onClick={()=> this.onSelection(data)}
+							/>)
+					 })}
+					</View>
 		          	<TouchableOpacity style={styles.button} onPress={this.send}><Text>Approve</Text></TouchableOpacity>
 		        </View>
 			</View>

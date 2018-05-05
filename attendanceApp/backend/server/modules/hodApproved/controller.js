@@ -4,17 +4,13 @@ export const approve = async (req,res)=>{
 	try{
 		MongoClient.connect('mongodb://localhost/', (err,client) =>{
 			if (err) console.log(err);
-			db.collection('tickets').find({ approved:true }).toArray((err, data) =>{
-				if (err) console.log(err)
-				else{
-					data.forEach(
-						(doc) => {
-							return res.status(201).json(doc);
-							}
-					);
-					
-				}
-			});
+			const db = client.db('studentTicket');
+			// update the count
+			req.body.data.map(dat=>{
+					db.collection('tickets').update({ enrollment_no : dat.enrollment_no },{ $set:{approved : true }});
+			})
+			//db.collection('tickets').update({ enrollment_no : req.body.enrollment_no },{ $set:{approved : true }});
+			return res.status(201).json({msg:"Students approved"});
 		});
 		
 	}catch(e){
