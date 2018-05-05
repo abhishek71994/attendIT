@@ -20,7 +20,7 @@ export default class studentticket extends Component{
 	}
 
 	raise = () =>{
-		fetch('http://192.168.0.101:3001/api/ticket',{
+		fetch('http://192.168.43.109:3001/api/ticket',{
 			method : 'POST',
 			headers : {
 				'Accept' : 'application/json', 

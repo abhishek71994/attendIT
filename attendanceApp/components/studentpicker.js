@@ -2,12 +2,12 @@ import React,{ Component } from 'react';
 import {
 	Text,
 	View,
-	CheckBox,
 	Button,
 	StyleSheet,
 	TouchableOpacity
 } from 'react-native';
-import SelectMultiple from 'react-native-select-multiple';
+//import SelectMultiple from 'react-native-select-multiple'; remove this if this doesnt work
+import CheckBox from "react-native-check-box";
 export default class StudentPicker extends Component{
 	constructor(props){
 		super(props);
@@ -53,7 +53,7 @@ export default class StudentPicker extends Component{
   }
   /* istanbul ignore next */
   fetchResult=() => {
-  	fetch('http://192.168.0.101:3001/api/student/verified',{
+  	fetch('http://192.168.43.109:3001/api/student/verified',{
 			method : 'POST',
 			headers : {
 				'Accept' : 'application/json', 
@@ -102,15 +102,14 @@ export default class StudentPicker extends Component{
   	console.log(this.state);
   }
 	render(){
+		var leftText = "hahahahahahaha";
 		return(
 			<View style = {styles.wrapper}>
 				<View style = {styles.container}>
 				<Text>StudentPicker component</Text>
-					<SelectMultiple
-			        	items={this.state.students}
-		          		onSelectionsChange={this.onSelection}
-		          		selectedItems={this.state.selectedStudents} 
-		          		enableEmptySections/>
+					<View><CheckBox
+					     leftText={leftText}
+					 /></View>
 		          	<TouchableOpacity style={styles.button} onPress={this.send}><Text>Approve</Text></TouchableOpacity>
 		        </View>
 			</View>

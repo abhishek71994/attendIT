@@ -34,7 +34,7 @@ export default class Upload extends Component{
 				  }
 				});
 
-				xhr.open("POST", "http://192.168.0.101:3001/api/upload/attendance");
+				xhr.open("POST", "http://192.168.43.109:3001/api/upload/attendance");
 				xhr.setRequestHeader("Content-Type", "multipart/form-data");
 
 				xhr.send(data);

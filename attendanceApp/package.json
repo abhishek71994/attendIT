@@ -39,6 +39,7 @@
     "react": "16.3.0",
     "react-native": "~0.54.1",
     "react-native-calendars": "^1.19.3",
+    "react-native-check-box": "^2.1.0",
     "react-native-material-dropdown": "^0.11.1",
     "react-native-select-multiple": "^1.2.0",
     "react-native-vector-icons": "^4.6.0",
