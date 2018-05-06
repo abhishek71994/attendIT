@@ -4,7 +4,7 @@ export const download = async (req,res)=>{
 	//send the approved students emails
 	const approved = [];
 	try{
-		console.log(req.params);
+		console.log(req.headers.dept);
 		// MongoClient.connect('mongodb://localhost/', async (err,client) =>{
 		// 	if (err) console.log(err);
 		// 	const db = client.db('studentTicket');
@@ -31,8 +31,9 @@ export const download = async (req,res)=>{
 			// 	}
 			// });
 			//fs.writeFileSync(`../../uploads/attendance_${req.body.department}.csv`)
-			// const filename = __dirname+"../../../../"+`attendance_${req.params.department}.csv`;
-			// return res.status(201).download(filename);
+			const filename = __dirname+"../../../../"+`attendance_${req.headers.dept}.csv`;
+			return res.status(201).download(filename);
+			//return res.status(201).send(doc:"File download");
 		
 	}catch(e){
 		console.log("The error is here");

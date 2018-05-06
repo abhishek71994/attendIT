@@ -3,6 +3,6 @@ import * as DownloadApproved from './controller';
 
 const routes = new Router();
 
-routes.post('/student/approved',DownloadApproved.download);
+routes.get('/student/download',DownloadApproved.download);
 
 export default routes;
