@@ -14,7 +14,7 @@ export default class StudentPicker extends Component{
 		this.state = {
 			students : [],
 			selectedStudents : [],
-			dept:''
+			dept:this.props.navigation.state.params.dept
 		};
 		this.fetchResult = this.fetchResult.bind(this);
 		this.send = this.send.bind(this);
@@ -46,7 +46,6 @@ export default class StudentPicker extends Component{
   }
   
   async componentWillMount(){
-  	await this.setState({ dept : this.props.navigation.state.params.dept });
   	await this.fetchResult();
   }
   fetchResult=() => {
@@ -63,7 +62,6 @@ export default class StudentPicker extends Component{
 		.then((resp)=> resp.json())
 		.then( (res) =>{
 			//taking care of async storage later
-			console.log(res);
 			res.forEach((data) => {
 				let obj = {name: data.name, enrollment_no : data.enrollment_no};
 				if(data.approved !== undefined){
@@ -92,8 +90,34 @@ export default class StudentPicker extends Component{
 		})
 		.then((resp)=> resp.json())
 		.then( (res) =>{
-			alert("updated the db");
+			console.log(res);
 		})
+  }
+  download = () =>{
+  // 	fetch(`http://192.168.43.109:3001/api/student/download`,{
+		// 	method : 'GET',
+		// 	headers : {
+		// 		'Accept' : 'application/json', 
+		// 		'Content-Type' : 'application/json', 
+		// 		'Dept': this.state.dept
+		// 	}
+		// })
+	 //  	.then((resp)=> resp.blob())
+	 //  	.then((blob)=> download(blob))
+
+	// var xhr = new XMLHttpRequest();
+	// xhr.withCredentials = true;
+
+
+	// xhr.open("GET", "http://192.168.43.109:3001/api/student/download");
+	// xhr.setRequestHeader("dept", "CSE");
+	// xhr.setRequestHeader("Cache-Control", "no-cache");
+	// console.log(xhr.responseType);
+	// xhr.send();
+
+	const { uri: "./" } = await FileSystem.downloadAsync("http://192.168.43.109:3001/api/student/download", FileSystem.documentDirectory + 'name.ext');
+
+
   }
   componentDidMount(){
   	
@@ -104,7 +128,7 @@ export default class StudentPicker extends Component{
   }
   send = () => {
   	this.postResult();
-  	console.log(this.state)
+  	console.log(this.state.selectedStudents)
   }
 	render(){
 		return(
@@ -112,10 +136,12 @@ export default class StudentPicker extends Component{
 				<View style = {styles.container}>
 				<Text>StudentPicker component</Text>
 					<View>
-					 {this.state.students.map(data=>{
+					 {
+					 	//console.log(this.state.selectedStudents.find(function(obj){ return obj.name === data.name } ))
+					 	this.state.students.map(data=>{
 					 		return(<CheckBox
 					 		key={data.enrollment_no}
-					 		isChecked={this.state.selectedStudents.find(function(obj){ return obj.name === data.name } ).enrollment_no !== ''}
+					 		isChecked={this.state.selectedStudents.find(function(obj){ return obj.enrollment_no === data.enrollment_no } ) !== undefined}
 							
 							leftText={data.name+"("+data.enrollment_no+")"}
 							onClick={()=> this.onSelection(data)}
@@ -123,6 +149,7 @@ export default class StudentPicker extends Component{
 					 })}
 					</View>
 		          	<TouchableOpacity style={styles.button} onPress={this.send}><Text>Approve</Text></TouchableOpacity>
+		          	<TouchableOpacity style={styles.button} onPress={this.download}><Text>Download</Text></TouchableOpacity>
 		        </View>
 			</View>
 		)
