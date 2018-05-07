@@ -5,7 +5,6 @@ export const verify = async (req,res)=>{
 	try{
 		MongoClient.connect('mongodb://localhost/', (err,client) =>{
 			if (err) console.log(err);
-
 			
 			db.collection('tickets').find({ verified:true, department: department }).toArray((err, data) =>{
 				if (err) console.log(err)

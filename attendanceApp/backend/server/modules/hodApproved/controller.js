@@ -17,15 +17,17 @@ export const approve = async (req,res)=>{
 				if (err) console.log(err)
 				else{
 					const stream = fs.createWriteStream(`attendance_${req.body.department}.csv`);
-					stream.once('error', function(doc) { console.log(doc) });
+					stream.once('error', function(err) { console.log(err) });
 					data.forEach(
 						(doc) => {
  							  stream.write(JSON.stringify(doc));
 							}
 					);
 					stream.end();
-					const filename = __dirname+"../../../../"+`attendance_${req.body.department}.csv`;
-					return res.status(201).send(doc:"file is created");
+					const filename = __dirname+"/../../../"+`attendance_${req.body.department}.csv`;
+					console.log(filename);
+					console.log(__dirname);
+					return res.status(201).send('doc':"file is created");
 					
 				}
 			});
