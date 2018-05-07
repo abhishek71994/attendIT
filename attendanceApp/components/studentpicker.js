@@ -8,6 +8,9 @@ import {
 } from 'react-native';
 //import SelectMultiple from 'react-native-select-multiple'; remove this if this doesnt work
 import CheckBox from "react-native-check-box";
+import FileSystem from "react-native-filesystem";
+// import { RNFS } from 'react-native-fs';
+//var FileSaver = require('file-saver');
 export default class StudentPicker extends Component{
 	constructor(props){
 		super(props);
@@ -93,17 +96,43 @@ export default class StudentPicker extends Component{
 			console.log(res);
 		})
   }
-  download = () =>{
-  // 	fetch(`http://192.168.43.109:3001/api/student/download`,{
-		// 	method : 'GET',
-		// 	headers : {
-		// 		'Accept' : 'application/json', 
-		// 		'Content-Type' : 'application/json', 
-		// 		'Dept': this.state.dept
+  // writeToFile = (file) => {
+		// 	  const fileContents = file;
+		// 	  await FileSystem.writeToFile('my-directory/my-file.csv', fileContents);
+		// 	  console.log('file is written');
 		// 	}
-		// })
-	 //  	.then((resp)=> resp.blob())
-	 //  	.then((blob)=> download(blob))
+  download = () =>{
+  	fetch(`http://192.168.43.109:3001/api/student/download`,{
+			method : 'GET',
+			headers : {
+				'Accept' : 'application/json', 
+				'Content-Type' : 'application/json', 
+				'Dept': this.state.dept
+			}
+		})
+	  	.then((resp)=> resp.blob())
+	  	.then((blob)=> {
+	  		console.log(blob);
+	  		var file = new File([blob], "student.csv");
+	  		console.log(file);
+	  		// writeToFile(file);
+
+
+	  // 		var path = RNFS.DocumentDirectoryPath + '/test.csv';
+
+			// // write the file
+			// RNFS.writeFile(path, file, 'utf8')
+			//   .then((success) => {
+			//     console.log('FILE WRITTEN!');
+			//   })
+			//   .catch((err) => {
+			//     console.log(err.message);
+			//   });
+
+	  		// saveAs(file);
+	  		//download(blob);
+	  	})
+
 
 	// var xhr = new XMLHttpRequest();
 	// xhr.withCredentials = true;
@@ -115,7 +144,7 @@ export default class StudentPicker extends Component{
 	// console.log(xhr.responseType);
 	// xhr.send();
 
-	const { uri: "./" } = await FileSystem.downloadAsync("http://192.168.43.109:3001/api/student/download", FileSystem.documentDirectory + 'name.ext');
+	// const { uri: "./" } = await FileSystem.downloadAsync("http://192.168.43.109:3001/api/student/download", FileSystem.documentDirectory + 'name.csv');
 
 
   }
