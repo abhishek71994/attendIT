@@ -12,25 +12,25 @@ export const approve = async (req,res)=>{
 					await db.collection('tickets').update({ enrollment_no : dat.enrollment_no },{ $set:{approved : true }});
 			})
 			
-			db.collection('tickets').update({ enrollment_no : req.body.enrollment_no },{ $set:{approved : true }});
-			await db.collection('tickets').find({ department: req.body.department, approved : true }).toArray((err, data) =>{
-				if (err) console.log(err)
-				else{
-					const stream = fs.createWriteStream(`attendance_${req.body.department}.csv`);
-					stream.once('error', function(err) { console.log(err) });
-					data.forEach(
-						(doc) => {
- 							  stream.write(JSON.stringify(doc));
-							}
-					);
-					stream.end();
-					const filename = __dirname+"/../../../"+`attendance_${req.body.department}.csv`;
-					console.log(filename);
-					console.log(__dirname);
-					return res.status(201).send('doc':"file is created");
+			// db.collection('tickets').update({ enrollment_no : req.body.enrollment_no },{ $set:{approved : true }});
+			// await db.collection('tickets').find({ department: req.body.department, approved : true }).toArray((err, data) =>{
+			// 	if (err) console.log(err)
+			// 	else{
+			// 		const stream = fs.createWriteStream(`attendance_${req.body.department}.csv`);
+			// 		stream.once('error', function(err) { console.log(err) });
+			// 		data.forEach(
+			// 			(doc) => {
+ 		// 					  stream.write(JSON.stringify(doc));
+			// 				}
+			// 		);
+			// 		stream.end();
+			// 		const filename = __dirname+"/../../../"+`attendance_${req.body.department}.csv`;
+			// 		console.log(filename);
+			// 		console.log(__dirname);
+			// 		return res.status(201).send('doc':"file is created");
 					
-				}
-			});
+			// 	}
+			// });
 			//fs.writeFileSync(`../../uploads/attendance_${req.body.department}.csv`)
 			
 		});

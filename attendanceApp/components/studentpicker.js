@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 //import SelectMultiple from 'react-native-select-multiple'; remove this if this doesnt work
 import CheckBox from "react-native-check-box";
-import FileSystem from "react-native-filesystem";
+// import FileSystem from "react-native-filesystem";
 // import { RNFS } from 'react-native-fs';
 //var FileSaver = require('file-saver');
 export default class StudentPicker extends Component{
@@ -178,7 +178,6 @@ export default class StudentPicker extends Component{
 					 })}
 					</View>
 		          	<TouchableOpacity style={styles.button} onPress={this.send}><Text>Approve</Text></TouchableOpacity>
-		          	<TouchableOpacity style={styles.button} onPress={this.download}><Text>Download</Text></TouchableOpacity>
 		        </View>
 			</View>
 		)

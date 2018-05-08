@@ -48,6 +48,7 @@ export default class Login extends Component{
 		.then((resp)=> resp.json())
 		.then( (res) =>{
 			//taking care of async storage later
+			console.log(res);
 			if(res.role === 'event-head'){
 				this.props.navigation.navigate('Upload');
 			}
