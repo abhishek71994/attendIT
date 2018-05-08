@@ -11,11 +11,16 @@ export const verify = async (req,res) => {
 			db.collection('loginData').find({ username: username,password:password }).toArray((err, data) =>{
 				if (err) console.log(err)
 				else{
-					data.forEach(
-						(doc) => {
-							return res.status(201).json(doc);
-							}
-					);
+					if(data.length === 0){
+						return res.status(404).json({result:"Wrong credentials"});
+					}
+					else{
+						data.forEach(
+							(doc) => {
+								return res.status(201).json(doc);
+								}
+						);
+					}
 					
 				}
 			});
