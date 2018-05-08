@@ -34,7 +34,7 @@ export default class Login extends Component{
 	login = () => {
 		//the fetching thing
 		// use post to send data to express and then express looks up the dB for records
-		fetch('http://192.168.43.109:3001/api/login',{
+		fetch('http://192.168.0.101:3001/api/login',{
 			method : 'POST',
 			headers : {
 				'Accept' : 'application/json', 
@@ -45,7 +45,14 @@ export default class Login extends Component{
 				password : this.state.password
 			})
 		})
-		.then((resp)=> resp.json())
+		.then((resp)=> {
+			if(resp.status===201){
+				return resp.json()
+			}
+			else{
+				throw new Error("Not working");
+			}
+		})
 		.then( (res) =>{
 			//taking care of async storage later
 			console.log(res);
@@ -60,9 +67,7 @@ export default class Login extends Component{
 			}
 		} ).catch(function(error) {
 			alert("Wrong username or password. Try again!");
- // ADD THIS THROW error
-  throw error;
-});
+		});
 	}
 	render(){
 		return(
