@@ -22,7 +22,7 @@ app.use(function (req, res, next) {
   next();
 });
 //resetting the app
-//Reset();
+Reset();
 
 app.use('/api',[ TicketRoute,LoginRoute,verifiedStudent,uploadRoute, ApproveRoute, VerifyRoute, DownloadRoute ]);
 
