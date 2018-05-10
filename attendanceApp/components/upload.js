@@ -28,17 +28,16 @@ export default class Upload extends Component{
 				var xhr = new XMLHttpRequest();
 				xhr.withCredentials = true;
 
-				xhr.addEventListener("readystatechange", function () {
-				  if (this.readyState === 4) {
-				    console.log(this.responseText);
-				  }
+				xhr.addEventListener("onload", function () {
+				  alert("File uploaded");
 				});
 
-				xhr.open("POST", "http://192.168.43.109:3001/api/upload/attendance");
+				xhr.open("POST", "http://192.168.0.108:3001/api/upload/attendance");
 				xhr.setRequestHeader("Content-Type", "multipart/form-data");
-
+				xhr.onload=()=>{
+					alert("upload done");
+				}
 				xhr.send(data);
-
 				// fetch("http://192.168.0.101:3001/api/upload/attendance", {
 				//   method: 'post',
 				//   header:{

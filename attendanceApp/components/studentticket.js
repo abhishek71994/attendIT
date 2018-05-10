@@ -20,7 +20,7 @@ export default class studentticket extends Component{
 	}
 
 	raise = () =>{
-		fetch('http://192.168.43.109:3001/api/ticket',{
+		fetch('http://192.168.0.108:3001/api/ticket',{
 			method : 'POST',
 			headers : {
 				'Accept' : 'application/json', 
@@ -29,18 +29,27 @@ export default class studentticket extends Component{
 			body : JSON.stringify({
 				name : this.state.username,
 				enrollment_no : this.state.enrollNo,
-				date : this.state.selected,
+				date : new Date(),
 				event : this.state.event,
 				department : this.state.dept,
 				section : this.state.section,
 				year : this.state.year
 			})
 		})
-		.then((res) => res.json())
+		.then((resp) => {
+			if(resp.status===201){
+				return resp.json()
+			}
+			else{
+				throw new Error("Not working");
+			}
+		})
 		.then((res) => {
 			console.log(res);
 			alert("Ticket created!")
-		})
+		}).catch(function(error) {
+			alert("Ticket already exists");
+		});
 	}
 	changeEvent = (e) => {
 		this.setState({ event: e });
