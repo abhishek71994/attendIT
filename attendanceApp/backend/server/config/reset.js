@@ -13,6 +13,10 @@ export default ()=>{
 	rule.hour = 9;
 	rule.minute = 20;
 		
+	const approve = new Schedule.RecurrenceRule();
+	approve.dayOfWeek = new Schedule.Range(2, 6);//from tuesday to saturday
+	approve.hour = 5;
+	approve.minute = 0;
 
 	const deprecationRule = new Schedule.RecurrenceRule();
 	deprecationRule.dayOfWeek = new Schedule.Range(2, 6);//from tuesday to saturday
@@ -80,9 +84,61 @@ export default ()=>{
 		//check the count and tell about a backup class
 	  console.log('Today is recognized by Rebecca Black!');
 	});
-	const k = Schedule.scheduleJob(deprecationRule, function(){
-		//reset the tickets db
-	  console.log('Today is recognized by Rebecca Black!');
+	// const k = Schedule.scheduleJob(deprecationRule, function(){
+	// 	//reset the tickets db
+	//   console.log('Today is recognized by Rebecca Black!');
+	// });
+	const p = Schedule.scheduleJob(approve, function(){
+		MongoClient.connect('mongodb://localhost/', (err,client) =>{
+			if (err) console.log(err);
+			
+			const db = client.db('studentTicket');
+			
+			db.collection('loginData').find().toArray((err, data) =>{
+				if (err) console.log(err)
+				else{
+					if(data.length === 0){
+						return res.status(404).json({result:"Wrong credentials"});
+					}
+					else{
+						data.forEach((mail)=>{
+							const transporter = nodeMailer.createTransport({
+							service : 'Gmail',
+							auth : {
+								user : 'xrace2018@gmail.com',
+								pass : 'innovacion18'
+							}
+							});
+							if(mail.approved===true){
+								const message = {
+									from : 'xrace2018@gmail.com',
+									to : `${mail.email}`,
+									subject : 'Ticket notification',
+									text : `students wont be attending your class`,
+									html : `<p>Your ticket has been approved</p>`,
+								}
+							}
+							else{
+								const message = {
+									from : 'xrace2018@gmail.com',
+									to : `${mail.email}`,
+									subject : 'Ticket notification',
+									text : `students wont be attending your class`,
+									html : `<p>Your ticket has not been approved</p>`,
+								}
+							}
+							
+							transporter.sendMail(message,(err,res)=>{
+								if(err) console.log(err);
+
+								console.log(res);
+							})
+						})
+					}
+					
+				}
+			});
+		});
 	});
 }
 

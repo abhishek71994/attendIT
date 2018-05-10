@@ -1,5 +1,6 @@
 import MongoClient from 'mongodb';
 import fs from 'fs';
+import nodeMailer from 'nodemailer';
 export const approve = async (req,res)=>{
 	//send the approved students emails
 	const approved = [];
