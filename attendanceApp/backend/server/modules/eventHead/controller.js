@@ -13,7 +13,7 @@ export const handleFile = (req,res)=>{
 			const db = client.db('studentTicket');
 			// update the count
 			db.collection('tickets').update({ enrollment_no : jsonObj.enrollment_no },{ $set:{verified : true }});
-			db.collection('loginData').find({role:"HOD"}).toArray((err, data) =>{
+			db.collection('loginData').find({role:"hod"}).toArray((err, data) =>{
 				if (err) console.log(err)
 				else{
 					if(data.length === 0){

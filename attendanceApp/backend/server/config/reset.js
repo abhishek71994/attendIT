@@ -52,13 +52,25 @@ export default ()=>{
 																pass : 'innovacion18'
 															}
 														});
-														const message = {
-															from : 'xrace2018@gmail.com',
-															to : `${mail.email}`,
-															subject : 'Ticket notification',
-															text : `${data.count} students wont be attending your class`,
-															html : `<p>${data.count} students wont be attending your class</p>`,
+														if(data.count>15){
+															const message = {
+																from : 'xrace2018@gmail.com',
+																to : `${mail.email}`,
+																subject : 'Ticket notification',
+																text : `${data.count} students wont be attending your class`,
+																html : `<p>${data.count} students wont be attending your class. You can request a backup class</p>`,
+															}
 														}
+														else{
+															const message = {
+																from : 'xrace2018@gmail.com',
+																to : `${mail.email}`,
+																subject : 'Ticket notification',
+																text : `${data.count} students wont be attending your class`,
+																html : `<p>${data.count} student(s) wont be attending your class.</p>`,
+															}
+														}
+														
 														transporter.sendMail(message,(err,res)=>{
 															if(err) console.log(err);
 
