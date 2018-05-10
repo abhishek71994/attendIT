@@ -4,6 +4,7 @@ import {
 	Text,
 	TextInput,
 	View,
+	Image,
 	TouchableOpacity,
 	Button
 } from 'react-native';
@@ -32,7 +33,7 @@ export default class Upload extends Component{
 				  alert("File uploaded");
 				});
 
-				xhr.open("POST", "http://192.168.0.108:3001/api/upload/attendance");
+				xhr.open("POST", "http://192.168.0.101:3001/api/upload/attendance");
 				xhr.setRequestHeader("Content-Type", "multipart/form-data");
 				xhr.onload=()=>{
 					alert("upload done");
@@ -66,7 +67,14 @@ export default class Upload extends Component{
 				onPress={this._pickDocument}
 				style={{ marginLeft:40 }}
 				/>
-				<TouchableOpacity><Text>Upload File</Text></TouchableOpacity>
+			<View>
+				<Text>The .csv should be of format:</Text>
+				<Text>name,enrollment_no,department,event,year,section</Text>
+				<Text>Abhishek,12014002002056,CSE,Innovacion,4,A</Text>
+				<Text>Ekta Bihani,12014002002022,CSE,Innovacion,4,C</Text>
+				<Text>Sanjana Jha,12014002002132,CSE,Innovacion,4,C</Text>
+				<Text>Vivek Kedia,12014002002134,CSE,Innovacion,4,C</Text>
+			</View>
 			</ScrollView>
 			)
 	}

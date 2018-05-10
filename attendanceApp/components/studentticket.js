@@ -15,12 +15,12 @@ export default class studentticket extends Component{
 						    }, {
 						      value: 'Food fest',
 						    }],
-						    selected: Date(),
+						    selected: new Date(),
 				};
 	}
 
 	raise = () =>{
-		fetch('http://192.168.0.108:3001/api/ticket',{
+		fetch('http://192.168.0.101:3001/api/ticket',{
 			method : 'POST',
 			headers : {
 				'Accept' : 'application/json', 
@@ -29,7 +29,7 @@ export default class studentticket extends Component{
 			body : JSON.stringify({
 				name : this.state.username,
 				enrollment_no : this.state.enrollNo,
-				date : new Date(),
+				date : Date(),
 				event : this.state.event,
 				department : this.state.dept,
 				section : this.state.section,
@@ -38,15 +38,17 @@ export default class studentticket extends Component{
 		})
 		.then((resp) => {
 			if(resp.status===201){
-				return resp.json()
+				return resp.json();
+			}
+			else if(resp.status === 403){
+				return resp.json();
 			}
 			else{
 				throw new Error("Not working");
 			}
 		})
 		.then((res) => {
-			console.log(res);
-			alert("Ticket created!")
+			alert(res.ticket);
 		}).catch(function(error) {
 			alert("Ticket already exists");
 		});
@@ -82,7 +84,7 @@ export default class studentticket extends Component{
 	        	style={styles.textInput}/>
 				<TouchableOpacity 
 				style={styles.button} 
-				//disabled={this.getTime()}
+				disabled={this.getTime()}
 				onPress={this.raise}
 				>
 				<Text>Raise Ticket</Text>

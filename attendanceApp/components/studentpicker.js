@@ -52,7 +52,7 @@ export default class StudentPicker extends Component{
   	await this.fetchResult();
   }
   fetchResult=() => {
-  	fetch('http://192.168.43.109:3001/api/student/verified',{
+  	fetch('http://192.168.0.101:3001/api/student/verified',{
 			method : 'POST',
 			headers : {
 				'Accept' : 'application/json', 
@@ -80,21 +80,26 @@ export default class StudentPicker extends Component{
 		})
   }
   postResult = () =>{
-  	fetch('http://192.168.43.109:3001/api/student/approved',{
-			method : 'POST',
-			headers : {
-				'Accept' : 'application/json', 
-				'Content-Type' : 'application/json', 
-			},
-			body : JSON.stringify({
-				data : this.state.selectedStudents,
-				department : this.state.dept
+  	if(this.state.selectedStudents.length>0){
+	  	fetch('http://192.168.0.101:3001/api/student/approved',{
+				method : 'POST',
+				headers : {
+					'Accept' : 'application/json', 
+					'Content-Type' : 'application/json', 
+				},
+				body : JSON.stringify({
+					data : this.state.selectedStudents,
+					department : this.state.dept
+				})
 			})
-		})
-		.then((resp)=> resp.json())
-		.then( (res) =>{
-			console.log(res);
-		})
+			.then((resp)=> resp.json())
+			.then( (res) =>{
+				console.log(res);
+			})
+  	}
+  	else{
+  		alert("Please select a student to approve");
+  	}
   }
   // writeToFile = (file) => {
 		// 	  const fileContents = file;
@@ -160,22 +165,27 @@ export default class StudentPicker extends Component{
   	console.log(this.state.selectedStudents)
   }
 	render(){
+
 		return(
 			<View style = {styles.wrapper}>
 				<View style = {styles.container}>
 				<Text>StudentPicker component</Text>
 					<View>
-					 {
-					 	//console.log(this.state.selectedStudents.find(function(obj){ return obj.name === data.name } ))
-					 	this.state.students.map(data=>{
-					 		return(<CheckBox
-					 		key={data.enrollment_no}
-					 		isChecked={this.state.selectedStudents.find(function(obj){ return obj.enrollment_no === data.enrollment_no } ) !== undefined}
-							
-							leftText={data.name+"("+data.enrollment_no+")"}
-							onClick={()=> this.onSelection(data)}
-							/>)
-					 })}
+					{
+					 		(this.state.students.length>0) && this.state.students.map(data=>{
+						 		return(<CheckBox
+						 		key={data.enrollment_no}
+						 		isChecked={this.state.selectedStudents.find(function(obj){ return obj.enrollment_no === data.enrollment_no } ) !== undefined}
+								
+								leftText={data.name+"("+data.enrollment_no+")"}
+								onClick={()=> this.onSelection(data)}
+								/>)
+							 })
+				 	}
+
+					</View>
+					<View>
+						{ (this.state.students.length===0) && <Text>Event Head is yet to upload a ticket</Text> }
 					</View>
 		          	<TouchableOpacity style={styles.button} onPress={this.send}><Text>Approve</Text></TouchableOpacity>
 		        </View>
