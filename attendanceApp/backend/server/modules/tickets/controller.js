@@ -12,14 +12,19 @@ export const createTicket = async (req,res) => {
 			db.collection('tickets').find({ enrollment_no:enrollment_no.toString(),event:event }).toArray(async (err,data)=>{
 
 				if(err) console.log(err);
+				if(Number(date.split(" ")[4].split(":")[0])<=Number(Date().split(" ")[4].split(":")[0])){
+					console.log("Cheating");
+					return res.status(403).json({ticket: "You're Cheating"});
+
+				}
 				else if(data.length >= 1){
 					return res.status(404).json({ticket: "already created"});
 				}
 				else{
+
 					db.collection('count').update({year : year , section : section , department: department, day: day },{ $inc:{"count":1} });
 					return res.status(201).json({ticket: await newTicket.save()});
 				}
-				console.log(enrollment_no,event,data);
 			});
 			// update the count
 			
