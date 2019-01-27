@@ -23,7 +23,7 @@ app.use(function (req, res, next) {
 });
 //resetting the app
 Reset();
-
+//adding api routes
 app.use('/api',[ TicketRoute,LoginRoute,verifiedStudent,uploadRoute, ApproveRoute, VerifyRoute, DownloadRoute ]);
 
 // for login details
